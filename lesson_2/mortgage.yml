@@ -1,0 +1,7 @@
+'en':
+  'request_amount': 'Please enter the principal amount of the loan:'
+  'invalid_amount': 'Invalid input. Enter the amount as a number e.g. "5000" or "3.5". Leading zeroes or trailing decimal zeroes are not allowed.'
+  'request_rate': 'Please enter the Annual Percentage Rate (e.g. for 4.7%, type "4.7"):'
+  'request_duration': 'Please enter the loan duration in years:'
+  'monthly_payment': 'Your monthly payment will be '
+  'input_invalid': 'Input was invalid, please try again.'

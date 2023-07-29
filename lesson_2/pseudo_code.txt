@@ -1,0 +1,52 @@
+a method that returns the sum of two integers
+START
+get two integers, a and b, as arguments
+return a+b
+END
+
+a method that takes an array of strings, and returns a string that is all those strings concatenated together
+START
+use array join method to combine strings
+return result
+END
+-or-
+START
+initialize an empty string to store the result
+for each string in the array, concatenate the string to the result in progress
+return the result string
+END
+
+a method that takes an array of integers, and returns a new array with every other element from the original array, starting with the first element. For instance:
+every_other([1,4,7,2,5]) # => [1,7,5]
+START
+initialize an empty array for the result
+for the range 0 through one less than the length of the array:
+  if the iteration number is even:
+    retrieve the element with that index from the original array
+    push that element to the result array
+return the new array
+END
+
+a method that determines the index of the 3rd occurrence of a given character in a string. For instance, if the given character is 'x' and the string is 'axbxcdxex', the method should return 6 (the index of the 3rd 'x'). If the given character does not occur at least 3 times, return nil.
+START
+initialize an empty array for found matches
+loop through the range from 0 to the length of the search string (non-inclusive):
+  if the character at search string[index] is equal to the given match character:
+    push the index to the array of matches
+    if the match array length is 3:
+      return the index
+if the loop completes without returning, return nil
+END
+
+a method that takes two arrays of numbers and returns the result of merging the arrays. The elements of the first array should become the elements at the even indexes of the returned array, while the elements of the second array should become the elements at the odd indexes. For instance:
+merge([1, 2, 3], [4, 5, 6]) # => [1, 4, 2, 5, 3, 6]
+You may assume that both array arguments have the same number of elements.
+START
+initialize an empty result array
+loop through the range from 0 to the length of the first array (non-inclusive):
+  push to the result array the first array element at [loop index]
+  push to the result array the second array element at [loop index]
+return the result array
+END
+
+> In the long term, you may not need pseudo-code or flowcharts at all. However, in our interview coding assessments, we expect you to lay out your logic before you begin coding. Pseudo-code is the most straightforward way to do that, so take time to practice pseudo-code before you take those assessments.
