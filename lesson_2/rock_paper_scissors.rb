@@ -56,13 +56,13 @@ end
 run_tests = true
 if run_tests
   all_pass = \
-    winner('rock', 'rock') == 0 \
-    && winner('paper', 'paper') == 0 \
-    && winner('scissors', 'scissors') == 0 \
-    && winner('rock', 'scissors') == 1 \
-    && winner('paper', 'scissors') == 2 \
-    && winner('scissors', 'paper') == 1 \
-    && winner('scissors', 'rock') == 2
+    determine_winner('rock', 'rock') == 0 \
+    && determine_winner('paper', 'paper') == 0 \
+    && determine_winner('scissors', 'scissors') == 0 \
+    && determine_winner('rock', 'scissors') == 1 \
+    && determine_winner('paper', 'scissors') == 2 \
+    && determine_winner('scissors', 'paper') == 1 \
+    && determine_winner('scissors', 'rock') == 2
   puts all_pass ? "Tests passed." : "SOME TESTS FAILED."
 end
 
