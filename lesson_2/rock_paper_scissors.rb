@@ -2,44 +2,52 @@
 # the computer makes a choice
 # the winner is displayed
 
+CHOICES = ['rock', 'paper', 'scissors']
+
 def prompt(message)
   puts ">> #{message}"
 end
 
-def user_choice
-  prompt('Choose rock, paper, or scissors:')
+def ask_user_choice
   loop do
+    prompt("Choose: #{CHOICES.join(', ')}")
     choice = gets.chomp.downcase
-    return choice if %w(rock paper scissors).include?(choice)
-    prompt('Invalid input. (rock/paper/scissors)')
+    return choice if CHOICES.include?(choice)
+    prompt('Invalid input.')
   end
 end
 
-def computer_choice
-  %w(rock paper scissors).sample
+def pick_computer_choice
+  CHOICES.sample
 end
 
 def winner(a, b)
-  a_index = %w(rock paper scissors).index(a)
-  b_index = %w(rock paper scissors).index(b)
+  a_index = CHOICES.index(a)
+  b_index = CHOICES.index(b)
   (a_index - b_index) % 3 # 0: tie, 1: a, 2: b
 end
 
-def play_game
+def display_results(user_move, computer_move, winner_code)
+  result = [
+    "It's a tie.",
+    'You win!',
+    'You lose...'
+  ][winner_code]
+
+  prompt("You play #{user_move}. The computer plays #{computer_move}.")
+  prompt(result)
+end
+
+def main
   loop do
-    user_move = user_choice
-    computer_move = computer_choice
+    user_move = ask_user_choice
+    computer_move = pick_computer_choice
     winner_code = winner(user_move, computer_move)
-    win_text = [
-      "It's a tie!",
-      'You win!',
-      'You lose...'
-    ][winner_code]
-    prompt("You play #{user_move} against the computer's #{computer_move}.")
-    prompt(win_text)
+
+    display_results(user_move, computer_move, winner_code)
+
     prompt('Would you like to play again? (y)')
-    play_again = gets.chomp.downcase == 'y'
-    break unless play_again
+    break unless gets.chomp.downcase == 'y'
   end
 end
 
@@ -60,4 +68,4 @@ end
 
 # MAIN
 
-play_game()
+main()
