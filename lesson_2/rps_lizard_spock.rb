@@ -1,7 +1,3 @@
-# the user makes a choice
-# the computer makes a choice
-# the winner is displayed
-
 CHOICES = %w(rock paper scissors spock lizard)
 ALIASES = {
   'r' => CHOICES[0],
@@ -30,10 +26,10 @@ def pick_computer_choice
 end
 
 # 0: tie, 1: one, 2: two
-def determine_winner(player_one, player_two)
+def winner_of(player_one, player_two)
   one_index = CHOICES.index(player_one)
   two_index = CHOICES.index(player_two)
-  cycle_distance = (one_index - two_index) % 5
+  cycle_distance = (one_index - two_index) % CHOICES.length
   if cycle_distance == 0
     0
   elsif cycle_distance.odd?
@@ -58,7 +54,7 @@ def main
   loop do
     user_move = ask_user_choice
     computer_move = pick_computer_choice
-    winner_code = determine_winner(user_move, computer_move)
+    winner_code = winner_of(user_move, computer_move)
 
     display_results(user_move, computer_move, winner_code)
 
@@ -71,33 +67,33 @@ end
 
 def run_tests
   tie_game =
-    determine_winner('rock', 'rock') == 0 &&
-    determine_winner('paper', 'paper') == 0 &&
-    determine_winner('scissors', 'scissors') == 0 &&
-    determine_winner('spock', 'spock') == 0 &&
-    determine_winner('lizard', 'lizard') == 0
+    winner_of('rock', 'rock') == 0 &&
+    winner_of('paper', 'paper') == 0 &&
+    winner_of('scissors', 'scissors') == 0 &&
+    winner_of('spock', 'spock') == 0 &&
+    winner_of('lizard', 'lizard') == 0
   player_one_win =
-    determine_winner('rock', 'lizard') == 1 &&
-    determine_winner('paper', 'rock') == 1 &&
-    determine_winner('scissors', 'paper') == 1 &&
-    determine_winner('spock', 'scissors') == 1 &&
-    determine_winner('lizard', 'spock') == 1 &&
-    determine_winner('rock', 'lizard') == 1 &&
-    determine_winner('paper', 'rock') == 1 &&
-    determine_winner('scissors', 'paper') == 1 &&
-    determine_winner('spock', 'scissors') == 1 &&
-    determine_winner('lizard', 'spock') == 1
+    winner_of('rock', 'lizard') == 1 &&
+    winner_of('paper', 'rock') == 1 &&
+    winner_of('scissors', 'paper') == 1 &&
+    winner_of('spock', 'scissors') == 1 &&
+    winner_of('lizard', 'spock') == 1 &&
+    winner_of('rock', 'lizard') == 1 &&
+    winner_of('paper', 'rock') == 1 &&
+    winner_of('scissors', 'paper') == 1 &&
+    winner_of('spock', 'scissors') == 1 &&
+    winner_of('lizard', 'spock') == 1
   player_two_win =
-    determine_winner('rock', 'spock') == 2 &&
-    determine_winner('paper', 'lizard') == 2 &&
-    determine_winner('scissors', 'rock') == 2 &&
-    determine_winner('spock', 'paper') == 2 &&
-    determine_winner('lizard', 'scissors') == 2 &&
-    determine_winner('rock', 'spock') == 2 &&
-    determine_winner('paper', 'lizard') == 2 &&
-    determine_winner('scissors', 'rock') == 2 &&
-    determine_winner('spock', 'paper') == 2 &&
-    determine_winner('lizard', 'scissors') == 2
+    winner_of('rock', 'spock') == 2 &&
+    winner_of('paper', 'lizard') == 2 &&
+    winner_of('scissors', 'rock') == 2 &&
+    winner_of('spock', 'paper') == 2 &&
+    winner_of('lizard', 'scissors') == 2 &&
+    winner_of('rock', 'spock') == 2 &&
+    winner_of('paper', 'lizard') == 2 &&
+    winner_of('scissors', 'rock') == 2 &&
+    winner_of('spock', 'paper') == 2 &&
+    winner_of('lizard', 'scissors') == 2
   all_pass = tie_game && player_one_win && player_two_win
   puts all_pass ? "Tests passed." : "SOME TESTS FAILED."
 end
