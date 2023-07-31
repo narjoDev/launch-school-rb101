@@ -3,6 +3,13 @@
 # the winner is displayed
 
 CHOICES = %w(rock paper scissors spock lizard)
+ALIASES = {
+  'r' => CHOICES[0],
+  'p' => CHOICES[1],
+  's' => CHOICES[2],
+  'k' => CHOICES[3],
+  'l' => CHOICES[4]
+}
 
 def prompt(message)
   puts ">> #{message}"
@@ -10,8 +17,9 @@ end
 
 def ask_user_choice
   loop do
-    prompt("Choose: #{CHOICES.join(', ')}")
+    prompt("Choose: #{CHOICES.join(', ')} (#{ALIASES.keys.join(', ')})")
     choice = gets.chomp.downcase
+    choice = ALIASES[choice] || choice
     return choice if CHOICES.include?(choice)
     prompt('Invalid input.')
   end
