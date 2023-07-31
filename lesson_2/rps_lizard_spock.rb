@@ -41,22 +41,41 @@ end
 
 def display_results(user_move, computer_move, winner_code)
   result = [
-    "It's a tie.",
-    'You win!',
-    'You lose...'
+    'Round tie.',
+    'Round won!',
+    'Round lost...'
   ][winner_code]
 
   prompt("You play #{user_move}. The computer plays #{computer_move}.")
   prompt(result)
 end
 
-def main
-  loop do
+def run_match(target_score)
+  user_score = 0
+  computer_score = 0
+
+  while user_score < target_score && computer_score < target_score
     user_move = ask_user_choice
     computer_move = pick_computer_choice
     winner_code = winner_of(user_move, computer_move)
 
     display_results(user_move, computer_move, winner_code)
+
+    case winner_code
+    when 1 then user_score += 1
+    when 2 then computer_score += 1
+    end
+
+    prompt("Your points: #{user_score}. Computer's points: #{computer_score}")
+  end
+
+  user_won = user_score > computer_score
+  prompt(user_won ? 'You won the match!' : 'You lost the match.')
+end
+
+def main
+  loop do
+    run_match(3)
 
     prompt('Would you like to play again? (y)')
     break unless gets.chomp.downcase == 'y'
